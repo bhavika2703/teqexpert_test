@@ -1,8 +1,10 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teq_expert_test/product_ui.dart';
 import 'package:teq_expert_test/repo.dart';
 
+import 'bloc/connectivity/connectivity__bloc.dart';
 import 'bloc/product_bloc.dart';
 
 void main() {
@@ -14,8 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductBloc(ProductRepository()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProductBloc(ProductRepository()),
+        ),
+        BlocProvider(
+          create: (context) => ConnectivityBloc(Connectivity()),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter teqExpert',
         theme: ThemeData(

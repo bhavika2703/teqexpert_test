@@ -18,7 +18,6 @@ class ProductRepository {
         final data = json.decode(response.body)['products'] as List;
         print('data ::: : $data');
 
-        // Parse JSON into Product models
         return data
             .map((productJson) => Product.fromJson(productJson))
             .toList();
