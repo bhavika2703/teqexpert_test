@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teq_expert_test/product_ui.dart';
 import 'package:teq_expert_test/repo.dart';
+import 'package:teq_expert_test/unit_data.dart';
 
 import 'bloc/connectivity/connectivity__bloc.dart';
+import 'bloc/get_unit_cubit.dart';
 import 'bloc/product_bloc.dart';
 
 void main() {
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ConnectivityBloc(Connectivity()),
         ),
+        BlocProvider(create: (context) => GetUnitCubit())
       ],
       child: MaterialApp(
         title: 'Flutter teqExpert',
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const ProductScreen(),
+        home: const UnitDataView(),
       ),
     );
   }
